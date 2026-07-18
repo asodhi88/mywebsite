@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aman Sodhi — Product &amp; Photography</title>
+<meta name="description" content="Product manager with 10+ years in travel and financial services. Ships his own ideas — Domicile, ASX Stills — and photographs the world in between.">
+
+<!-- Open Graph (LinkedIn, iMessage, Slack, WhatsApp, Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aman Sodhi — Product &amp; Photography">
+<meta property="og:description" content="A product manager who ships his own ideas — and photographs the world in between.">
+<meta property="og:url" content="https://YOUR-DOMAIN-HERE.vercel.app">
+<meta property="og:image" content="https://YOUR-DOMAIN-HERE.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aman Sodhi — Product &amp; Photography">
+<meta name="twitter:description" content="A product manager who ships his own ideas — and photographs the world in between.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN-HERE.vercel.app/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1F0EB;
+  --ink:#17181A;
+  --safelight:#C2271D;
+  --stone:#7E7A72;
+  --hairline:rgba(23,24,26,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Newsreader',Georgia,serif;
+  font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--safelight);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+
+.mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
+.eyebrow{font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+
+/* ---------- top bar ---------- */
+header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:20px 4vw;border-bottom:1px solid var(--hairline);
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);
+}
+.wordmark{font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em}
+.wordmark .dot{color:var(--safelight)}
+nav{display:flex;gap:28px}
+nav a{
+  font-family:'Archivo',sans-serif;font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;position:relative;padding-bottom:2px;
+}
+nav a::after{content:'';position:absolute;left:0;bottom:0;height:1.5px;width:0;background:var(--safelight);transition:width .28s ease}
+nav a:hover::after{width:100%}
+
+/* ---------- hero ---------- */
+.hero{
+  padding:12vh 4vw 10vh;
+  display:grid;grid-template-columns:1.3fr .7fr;gap:5vw;align-items:center;
+}
+.hero .statement{
+  font-size:clamp(2rem,4.6vw,3.9rem);
+  font-weight:300;line-height:1.18;letter-spacing:-.01em;max-width:20ch;
+}
+.hero .statement em{font-style:italic;font-weight:400;color:var(--safelight)}
+.hero .sub{
+  margin-top:4vh;font-size:1.15rem;font-weight:300;max-width:44ch;color:#3a3b3d;
+}
+.cover-cta{margin-top:5vh;display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:14px 22px;border:1px solid var(--ink);
+  transition:background .25s,color .25s;display:inline-block;cursor:pointer;background:none;
+}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.red{border-color:var(--safelight);color:var(--safelight)}
+.btn.red:hover{background:var(--safelight);color:var(--paper)}
+
+/* ---------- photo placeholders ---------- */
+.photo{
+  position:relative;overflow:hidden;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+}
+.photo::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 20% 15%,rgba(255,255,255,.16),transparent 55%),
+    var(--duo,linear-gradient(160deg,#2c3e46 0%,#17181A 70%));
+}
+.photo::after{
+  content:'';position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+.photo .slot-label{
+  position:relative;z-index:2;color:rgba(241,240,235,.85);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:0 16px;line-height:1.8;
+}
+.hero-photo{aspect-ratio:4/5;max-width:380px;margin-left:auto;width:100%}
+@keyframes develop{
+  0%{filter:sepia(1) hue-rotate(-40deg) saturate(3) contrast(.55) brightness(1.25) blur(6px)}
+  55%{filter:sepia(.4) hue-rotate(-15deg) saturate(1.6) contrast(.85) brightness(1.05) blur(2px)}
+  100%{filter:none}
+}
+.develop{animation:develop 2.4s ease-out both}
+.exif{display:flex;justify-content:space-between;gap:12px;padding-top:10px;flex-wrap:wrap}
+
+/* ---------- section scaffolding ---------- */
+section.block{border-top:1px solid var(--ink);padding:10vh 0 6vh}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;padding:0 4vw 4vh}
+h2{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:400;letter-spacing:-.01em}
+h2 em{font-style:italic}
+
+/* ---------- work index (minimal) ---------- */
+.work-row{
+  display:grid;grid-template-columns:minmax(180px,320px) 1fr auto;
+  gap:3vw;align-items:baseline;
+  padding:4vh 4vw;border-top:1px solid var(--hairline);
+  transition:background .3s ease;
+}
+.work-row:hover{background:rgba(23,24,26,.035)}
+.work-row h3{
+  font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:500;line-height:1.05;
+  display:inline-flex;align-items:baseline;gap:10px;
+}
+.work-row:hover h3{font-style:italic;color:var(--safelight)}
+.work-row .arrow{
+  font-family:'Archivo',sans-serif;font-size:.55em;
+  transition:transform .25s ease;display:inline-block;
+}
+.work-row:hover .arrow{transform:translate(3px,-3px)}
+.work-row .desc{font-size:16.5px;font-weight:300;max-width:52ch;color:#3a3b3d}
+.work-row .stack{justify-self:end;text-align:right;max-width:220px}
+
+/* ---------- interactive resume ---------- */
+.resume-intro{padding:0 4vw 4vh;max-width:60ch;font-weight:300;color:#3a3b3d}
+.job{border-top:1px solid var(--hairline)}
+.job-head{
+  display:grid;grid-template-columns:56px 1fr auto auto;gap:24px;align-items:center;
+  padding:26px 4vw;cursor:pointer;width:100%;background:none;border:none;text-align:left;
+  font-family:inherit;color:inherit;transition:background .25s ease;
+}
+.job-head:hover{background:rgba(23,24,26,.035)}
+.logo-chip{
+  width:56px;height:56px;border-radius:50%;
+  border:1px solid var(--hairline);background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.02em;
+  color:var(--ink);flex-shrink:0;
+}
+.job-title h3{font-size:clamp(1.2rem,2vw,1.6rem);font-weight:500;line-height:1.15}
+.job-title .role{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);margin-top:5px}
+.job-dates{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--stone);white-space:nowrap}
+.job-toggle{
+  font-family:'Archivo',sans-serif;font-size:18px;font-weight:400;color:var(--safelight);
+  transition:transform .3s ease;width:24px;text-align:center;
+}
+.job.open .job-toggle{transform:rotate(45deg)}
+.job-body{
+  max-height:0;overflow:hidden;transition:max-height .45s ease;
+}
+.job.open .job-body{max-height:400px}
+.job-body ul{
+  list-style:none;padding:0 4vw 30px calc(4vw + 80px);
+}
+.job-body li{
+  font-weight:300;font-size:16.5px;color:#3a3b3d;max-width:62ch;
+  padding:8px 0 8px 20px;position:relative;
+}
+.job-body li::before{
+  content:'';position:absolute;left:0;top:17px;width:8px;height:1.5px;background:var(--safelight);
+}
+.resume-foot{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:5vh 4vw 0}
+.edu-line{padding:3vh 4vw 0}
+
+/* ---------- filmstrip ---------- */
+.strip{display:flex;gap:14px;overflow-x:auto;padding:0 4vw 2vh;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.frame{flex:0 0 280px}
+.frame .photo{aspect-ratio:3/4}
+.frame .exif{padding-top:8px}
+
+/* ---------- now ---------- */
+.now-grid{padding:0 4vw;display:grid;grid-template-columns:1fr 2fr;gap:4vw}
+.now-grid ul{list-style:none}
+.now-grid li{
+  display:flex;gap:20px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--hairline);
+  font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:300;
+}
+.now-grid li .mono{flex:0 0 110px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--ink);padding:12vh 4vw 6vh}
+footer .big{
+  font-size:clamp(2.6rem,8vw,6.5rem);font-weight:400;line-height:1;
+  letter-spacing:-.02em;display:inline-block;position:relative;
+}
+footer .big em{font-style:italic;color:var(--safelight)}
+footer .big::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--safelight);transition:width .4s ease}
+footer .big:hover::after{width:100%}
+.foot-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:8vh;padding-top:20px;border-top:1px solid var(--hairline)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .develop{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .job-body{transition:none}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-photo{margin:0;max-width:100%}
+  .work-row{grid-template-columns:1fr;gap:10px}
+  .work-row .stack{justify-self:start;text-align:left}
+  .job-head{grid-template-columns:44px 1fr 24px;row-gap:6px}
+  .logo-chip{width:44px;height:44px;font-size:11px}
+  .job-dates{grid-column:2;order:4}
+  .job-body ul{padding-left:4vw}
+  .now-grid{grid-template-columns:1fr}
+  nav{gap:14px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="wordmark" href="#top">AMAN SODHI<span class="dot">.</span></a>
+  <nav>
+    <a href="#work">Work</a>
+    <a href="#resume">Résumé</a>
+    <a href="#photography">Photography</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div>
+    <p class="eyebrow" style="color:var(--safelight);margin-bottom:3vh">Product · Photography · Side projects</p>
+    <h1 class="statement">A product manager who <em>ships his own ideas</em> — and photographs the world in between.</h1>
+    <p class="sub">Ten years shipping B2C and B2B products in travel and financial services. Outside work: self-built tools, a photography portfolio, and whatever's next.</p>
+    <div class="cover-cta">
+      <a class="btn" href="#work">Selected work</a>
+      <a class="btn red" href="#resume">The résumé</a>
+    </div>
+  </div>
+  <figure>
+    <div class="photo hero-photo develop" style="--duo:linear-gradient(165deg,#3c4b52 0%,#1b2226 60%,#17181A 100%)">
+      <span class="slot-label">Hero photo slot<br>your strongest frame</span>
+    </div>
+    <figcaption class="exif">
+      <span class="mono">ƒ/2.8 · 1/500 · ISO 200 · 35mm</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="block reveal" id="work">
+  <div class="section-head">
+    <h2>Selected <em>work</em></h2>
+    <span class="mono">Built, shipped &amp; maintained solo — click to try</span>
+  </div>
+
+  <a class="work-row" href="https://domicile-rust.vercel.app" target="_blank" rel="noopener">
+    <h3>Domicile <span class="arrow">↗</span></h3>
+    <p class="desc">Helps Canadian self-directed investors pick the right registered account for any ETF — tax rules, withholding data, and contribution room in one tool.</p>
+    <span class="mono stack">React · Vite · Tailwind · Serverless</span>
+  </a>
+
+  <a class="work-row" href="https://asxstills.vercel.app" target="_blank" rel="noopener">
+    <h3>ASX Stills <span class="arrow">↗</span></h3>
+    <p class="desc">My travel photography portfolio — built to feel like a gallery, not a grid.</p>
+    <span class="mono stack">React · Supabase · Cloudinary · WebGL</span>
+  </a>
+
+  <a class="work-row" href="#" target="_blank" rel="noopener">
+    <h3>Photo Mode Pipeline <span class="arrow">↗</span></h3>
+    <p class="desc">A zero-touch publishing pipeline that moves in-game photography from a PS5 straight to Instagram.</p>
+    <span class="mono stack">iOS Shortcuts · Dropbox · Make.com · Graph API</span>
+  </a>
+</section>
+
+<!-- ============ INTERACTIVE RESUME ============ -->
+<section class="block reveal" id="resume">
+  <div class="section-head">
+    <h2>The <em>résumé</em></h2>
+    <span class="mono">Tap a role to expand</span>
+  </div>
+  <p class="resume-intro">Ten-plus years across travel and financial services. I move fast, think in experiments, and obsess over what users actually do — not just what they say.</p>
+
+  <div class="job open">
+    <button class="job-head" aria-expanded="true">
+      <span class="logo-chip">ACV</span>
+      <span class="job-title"><h3>Air Canada Vacations</h3><span class="role">Product Manager · Search, Booking &amp; Checkout</span></span>
+      <span class="job-dates">2024 — Present</span>
+      <span class="job-toggle">+</span>
+    </button>
+    <div class="job-body"><ul>
+      <li>Unlocked new sales channels and booking-flow features that grew web revenue by $10M.</li>
+      <li>Integrated real-time flight schedules into vacation search, lifting search-to-book by 25%.</li>
+      <li>Used AI to translate and enrich booking-flow content, raising funnel completion by 10%.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <button class="job-head" aria-expanded="false">
+      <span class="logo-chip">BMO</span>
+      <span class="job-title"><h3>BMO</h3><span class="role">Product Manager · Personal Banking</span></span>
+      <span class="job-dates">2023 — 2024</span>
+      <span class="job-toggle">+</span>
+    </button>
+    <div class="job-body"><ul>
+      <li>Shaped the multi-year BI product vision for BMO's Canada-wide branch network.</li>
+      <li>Delivered six enterprise dashboards end to end, modernizing legacy branch reporting.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <button class="job-head" aria-expanded="false">
+      <span class="logo-chip">BNP</span>
+      <span class="job-title"><h3>BNP Paribas</h3><span class="role">Lead Business Analyst · Business Banking</span></span>
+      <span class="job-dates">2022 — 2023</span>
+      <span class="job-toggle">+</span>
+    </button>
+    <div class="job-body"><ul>
+      <li>Led an analyst team building a fintech application reconciling transactions across South-East Asia.</li>
+      <li>Analyzed adoption of new banking and investment products to steer growth strategy.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <button class="job-head" aria-expanded="false">
+      <span class="logo-chip">BW</span>
+      <span class="job-title"><h3>Bank of the West</h3><span class="role">Product Owner &amp; Senior Business Analyst · Retail Banking</span></span>
+      <span class="job-dates">2016 — 2021</span>
+      <span class="job-toggle">+</span>
+    </button>
+    <div class="job-body"><ul>
+      <li>Owned the bank's first business-process-management system, cutting loan processing times by 70%.</li>
+      <li>Shipped document cataloging in loan origination, saving hundreds of hours every month.</li>
+      <li>Defined the decision engine that automated initial review of all loan applications.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <button class="job-head" aria-expanded="false">
+      <span class="logo-chip">WF</span>
+      <span class="job-title"><h3>Wells Fargo</h3><span class="role">Business Analyst · Retail Banking</span></span>
+      <span class="job-dates">2015 — 2016</span>
+      <span class="job-toggle">+</span>
+    </button>
+    <div class="job-body"><ul>
+      <li>Redesigned client onboarding from intake to activation, sharply reducing account-setup time.</li>
+    </ul></div>
+  </div>
+
+  <p class="edu-line mono">Education — Product Management, University of Toronto · Master's in International Business, HULT San Francisco</p>
+  <div class="resume-foot">
+    <a class="btn red" href="#" download>Download full résumé (PDF)</a>
+    <span class="mono">CSPO · Product School PM &amp; Data Analytics · PMI CAPM</span>
+  </div>
+</section>
+
+<!-- ============ FILMSTRIP ============ -->
+<section class="block reveal" id="photography">
+  <div class="section-head">
+    <h2>From the <em>archive</em></h2>
+    <a class="mono" href="https://asxstills.vercel.app" target="_blank" rel="noopener" style="color:var(--safelight)">Full portfolio → asxstills</a>
+  </div>
+  <div class="strip">
+    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#4d5a4a 0%,#1c211b 70%)"><span class="slot-label">Frame 01</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
+    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#5a4a3e 0%,#211b16 70%)"><span class="slot-label">Frame 02</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
+    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#3e4a5a 0%,#161b21 70%)"><span class="slot-label">Frame 03</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
+    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#5a3e4a 0%,#21161b 70%)"><span class="slot-label">Frame 04</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
+    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#4a4a3e 0%,#1b1b16 70%)"><span class="slot-label">Frame 05</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ NOW ============ -->
+<section class="block reveal">
+  <div class="section-head"><h2>Currently</h2></div>
+  <div class="now-grid">
+    <span class="eyebrow">This month</span>
+    <ul>
+      <li><span class="mono">Building</span> Phase 2 of ASX Stills — WebGL distortion carousel &amp; smooth scroll</li>
+      <li><span class="mono">Planning</span> A virtual-photography content project for a certain November release</li>
+      <li><span class="mono">Open to</span> Product roles where builders are an advantage</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact">
+  <span class="eyebrow" style="color:var(--safelight)">Get in touch</span><br><br>
+  <a class="big" href="mailto:amandeep.sodhi1@hotmail.com">Say <em>hello</em>.</a>
+  <div class="foot-meta">
+    <span class="mono">© 2026 Aman Sodhi</span>
+    <span class="mono"><a href="https://github.com/asodhi88">GitHub</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a></span>
+    <span class="mono">Ask-my-AI — reserved for v2</span>
+  </div>
+</footer>
+
+<script>
+// scroll reveal
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// resume accordion
+document.querySelectorAll('.job-head').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const job = btn.closest('.job');
+    const isOpen = job.classList.contains('open');
+    document.querySelectorAll('.job.open').forEach(j=>{
+      j.classList.remove('open');
+      j.querySelector('.job-head').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      job.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+</script>
+</body>
+</html>
