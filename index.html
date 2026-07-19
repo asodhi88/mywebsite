@@ -183,23 +183,6 @@ h2 em{font-style:italic}
 .resume-foot{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:5vh 4vw 0}
 .edu-line{padding:3vh 4vw 0}
 
-/* ---------- filmstrip ---------- */
-.strip{display:flex;gap:14px;overflow-x:auto;padding:0 4vw 2vh;scrollbar-width:none}
-.strip::-webkit-scrollbar{display:none}
-.frame{flex:0 0 280px}
-.frame .photo{aspect-ratio:3/4}
-.frame .exif{padding-top:8px}
-
-/* ---------- now ---------- */
-.now-grid{padding:0 4vw;display:grid;grid-template-columns:1fr 2fr;gap:4vw}
-.now-grid ul{list-style:none}
-.now-grid li{
-  display:flex;gap:20px;align-items:baseline;
-  padding:18px 0;border-bottom:1px solid var(--hairline);
-  font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:300;
-}
-.now-grid li .mono{flex:0 0 110px}
-
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--ink);padding:12vh 4vw 6vh}
 footer .big{
@@ -230,7 +213,6 @@ footer .big:hover::after{width:100%}
   .logo-chip{width:44px;height:44px;font-size:11px}
   .job-dates{grid-column:2;order:4}
   .job-body ul{padding-left:4vw}
-  .now-grid{grid-template-columns:1fr}
   nav{gap:14px}
 }
 </style>
@@ -242,7 +224,6 @@ footer .big:hover::after{width:100%}
   <nav>
     <a href="#work">Work</a>
     <a href="#resume">Résumé</a>
-    <a href="#photography">Photography</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -372,34 +353,6 @@ footer .big:hover::after{width:100%}
   <div class="resume-foot">
     <a class="btn red" href="#" download>Download full résumé (PDF)</a>
     <span class="mono">CSPO · Product School PM &amp; Data Analytics · PMI CAPM</span>
-  </div>
-</section>
-
-<!-- ============ FILMSTRIP ============ -->
-<section class="block reveal" id="photography">
-  <div class="section-head">
-    <h2>From the <em>archive</em></h2>
-    <a class="mono" href="https://asxstills.vercel.app" target="_blank" rel="noopener" style="color:var(--safelight)">Full portfolio → asxstills</a>
-  </div>
-  <div class="strip">
-    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#4d5a4a 0%,#1c211b 70%)"><span class="slot-label">Frame 01</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
-    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#5a4a3e 0%,#211b16 70%)"><span class="slot-label">Frame 02</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
-    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#3e4a5a 0%,#161b21 70%)"><span class="slot-label">Frame 03</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
-    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#5a3e4a 0%,#21161b 70%)"><span class="slot-label">Frame 04</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
-    <figure class="frame"><div class="photo" style="--duo:linear-gradient(160deg,#4a4a3e 0%,#1b1b16 70%)"><span class="slot-label">Frame 05</span></div><figcaption class="exif"><span class="mono">Location · Year</span></figcaption></figure>
-  </div>
-</section>
-
-<!-- ============ NOW ============ -->
-<section class="block reveal">
-  <div class="section-head"><h2>Currently</h2></div>
-  <div class="now-grid">
-    <span class="eyebrow">This month</span>
-    <ul>
-      <li><span class="mono">Building</span> Phase 2 of ASX Stills — WebGL distortion carousel &amp; smooth scroll</li>
-      <li><span class="mono">Planning</span> A virtual-photography content project for a certain November release</li>
-      <li><span class="mono">Open to</span> Product roles where builders are an advantage</li>
-    </ul>
   </div>
 </section>
 
