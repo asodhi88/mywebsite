@@ -188,11 +188,57 @@ footer{border-top:1px solid var(--ink);padding:12vh 4vw 6vh}
 footer .big{
   font-size:clamp(2.6rem,8vw,6.5rem);font-weight:400;line-height:1;
   letter-spacing:-.02em;display:inline-block;position:relative;
+  background:none;border:0;padding:0;margin:0;
+  font-family:inherit;color:inherit;text-align:left;cursor:pointer;
 }
 footer .big em{font-style:italic;color:var(--safelight)}
 footer .big::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--safelight);transition:width .4s ease}
 footer .big:hover::after{width:100%}
 .foot-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:8vh;padding-top:20px;border-top:1px solid var(--hairline)}
+
+/* ---------- contact panel ---------- */
+.contact-panel{
+  margin-top:5vh;width:min(380px,100%);padding:24px;
+  background:#fff;border:1px solid var(--hairline);
+}
+.contact-panel[hidden]{display:none}
+.contact-panel h3{
+  margin:0 0 16px;font-family:'Archivo',sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--stone);
+}
+.contact-field{display:block;margin-bottom:12px}
+.contact-field > span{
+  display:block;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);
+}
+.contact-panel input,.contact-panel textarea{
+  width:100%;padding:8px 10px;background:var(--paper);
+  border:1px solid var(--hairline);border-radius:0;
+  color:var(--ink);font-family:inherit;font-size:14px;
+}
+.contact-panel textarea{resize:none}
+.contact-panel input:focus,.contact-panel textarea:focus{
+  outline:none;border-color:var(--safelight);
+}
+.contact-count{
+  display:block;margin-top:4px;text-align:right;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--stone);
+}
+.contact-actions{display:flex;gap:16px;align-items:center;margin-top:16px}
+.contact-panel button{
+  padding:0;border:0;background:none;color:var(--ink);
+  font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  transition:opacity .3s ease;
+}
+.contact-panel button[type=submit]{color:var(--safelight)}
+.contact-panel button:hover:not(:disabled){opacity:.6}
+.contact-panel button:disabled{opacity:.3;cursor:not-allowed}
+.contact-note{
+  margin:0;font-size:14px;line-height:1.6;color:#3a3b3d;font-weight:300;
+}
+.contact-note a{text-decoration:underline;color:var(--safelight)}
 
 /* ---------- reveal ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
@@ -359,7 +405,42 @@ footer .big:hover::after{width:100%}
 <!-- ============ CONTACT ============ -->
 <footer id="contact">
   <span class="eyebrow" style="color:var(--safelight)">Get in touch</span><br><br>
-  <a class="big" href="mailto:amandeep.sodhi1@hotmail.com">Say <em>hello</em>.</a>
+  <button class="big" id="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-panel">Say <em>hello</em>.</button>
+
+  <div class="contact-panel" id="contact-panel" role="dialog" aria-label="Send a message" hidden>
+    <form id="contact-form" novalidate>
+      <h3>Send a message</h3>
+      <label class="contact-field">
+        <span>Name</span>
+        <input type="text" id="cf-name" name="name" autocomplete="name">
+      </label>
+      <label class="contact-field">
+        <span>Email</span>
+        <input type="email" id="cf-email" name="email" autocomplete="email">
+      </label>
+      <label class="contact-field">
+        <span>Message</span>
+        <textarea id="cf-message" name="message" rows="4" maxlength="500"></textarea>
+        <span class="contact-count" id="cf-count">0/500</span>
+      </label>
+      <label class="contact-field" hidden aria-hidden="true">
+        <span>Website</span>
+        <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+      </label>
+      <p class="contact-note" id="cf-error" hidden>Something went wrong sending that. Please try again.</p>
+      <div class="contact-actions">
+        <button type="submit" id="cf-send" disabled>Send</button>
+        <button type="button" id="cf-cancel">Cancel</button>
+      </div>
+    </form>
+    <div id="contact-result" hidden>
+      <p class="contact-note" id="cf-result-note"></p>
+      <div class="contact-actions">
+        <button type="button" id="cf-close">Close</button>
+      </div>
+    </div>
+  </div>
+
   <div class="foot-meta">
     <span class="mono">© 2026 Aman Sodhi</span>
     <span class="mono"><a href="https://github.com/asodhi88">GitHub</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a></span>
@@ -389,6 +470,122 @@ document.querySelectorAll('.job-head').forEach(btn=>{
     }
   });
 });
+
+// contact panel
+(function(){
+  const MAX = 500;
+  const FALLBACK = 'mailto:amandeep.sodhi1@hotmail.com';
+  const toggle  = document.getElementById('contact-toggle');
+  const panel   = document.getElementById('contact-panel');
+  const form    = document.getElementById('contact-form');
+  const result  = document.getElementById('contact-result');
+  const note    = document.getElementById('cf-result-note');
+  const errNote = document.getElementById('cf-error');
+  const name    = document.getElementById('cf-name');
+  const email   = document.getElementById('cf-email');
+  const message = document.getElementById('cf-message');
+  const website = document.getElementById('cf-website');
+  const count   = document.getElementById('cf-count');
+  const send    = document.getElementById('cf-send');
+
+  let open = false;
+  let state = 'idle'; // idle | sending | done | undelivered | error
+
+  function syncSend(){
+    send.disabled = message.value.trim().length === 0 || state === 'sending';
+  }
+
+  function reset(){
+    state = 'idle';
+    form.hidden = false;
+    result.hidden = true;
+    errNote.hidden = true;
+    form.reset();
+    count.textContent = '0/' + MAX;
+    syncSend();
+  }
+
+  function setOpen(next){
+    open = next;
+    panel.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    if(open){
+      // Only clear a finished exchange when reopening, so a failed
+      // send keeps what was typed.
+      if(state === 'done' || state === 'undelivered') reset();
+      name.focus({preventScroll:true});
+    }
+  }
+
+  toggle.addEventListener('click', () => setOpen(!open));
+  document.getElementById('cf-cancel').addEventListener('click', () => {
+    reset();
+    setOpen(false);
+    toggle.focus();
+  });
+  document.getElementById('cf-close').addEventListener('click', () => {
+    reset();
+    setOpen(false);
+    toggle.focus();
+  });
+
+  message.addEventListener('input', () => {
+    if(message.value.length > MAX) message.value = message.value.slice(0, MAX);
+    count.textContent = message.value.length + '/' + MAX;
+    syncSend();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && open){ setOpen(false); toggle.focus(); }
+  });
+
+  document.addEventListener('pointerdown', e => {
+    if(!open) return;
+    if(panel.contains(e.target) || toggle.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if(send.disabled) return;
+
+    state = 'sending';
+    send.textContent = 'Sending…';
+    errNote.hidden = true;
+    syncSend();
+
+    try{
+      const res = await fetch('/api/contact', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          name: name.value.trim(),
+          email: email.value.trim(),
+          message: message.value.trim(),
+          website: website.value
+        })
+      });
+      if(!res.ok) throw new Error('send failed');
+      const data = await res.json().catch(() => ({}));
+      state = data.delivered === false ? 'undelivered' : 'done';
+
+      note.innerHTML = state === 'done'
+        ? 'Thank you — your message has been sent.'
+        : 'Email isn’t set up yet, so that didn’t reach anyone. Please ' +
+          '<a href="' + FALLBACK + '">email me directly</a> instead.';
+      form.hidden = true;
+      result.hidden = false;
+    }catch{
+      state = 'error';
+      errNote.hidden = false;
+    }finally{
+      send.textContent = 'Send';
+      syncSend();
+    }
+  });
+
+  reset();
+})();
 </script>
 </body>
 </html>
